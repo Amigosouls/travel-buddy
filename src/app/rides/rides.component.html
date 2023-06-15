@@ -1,0 +1,46 @@
+
+<div class="flex">
+    <div class="flex-1 md:flex-none flex align-items-center justify-content-center bg-primary font-bold m-2 px-5 py-3 border-round">
+        <div class="grid">
+            <div class="col-6">
+                <div class="field">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <i class="pi pi-user"></i>
+                        </span>
+                        <input pInputText  (keyup.enter)="userName = $any($event.target).value" (keyup.escape)="userName =''" placeholder="Username" />
+                    </div>
+                </div>
+                <div class="field grid">
+                    <div class="p-inputgroup col">
+                        <span class="p-inputgroup-addon">@</span>
+                        <input type="text" (keyup.enter)="userEmail = $any($event.target).value" (keyup.escape)="userEmail =''" pInputText placeholder="email" />
+                    </div>
+                </div>
+                <div class="field grid">
+                    <div class="p-inputgroup col">
+                        <span class="p-inputgroup-addon"><i class="pi pi-info"></i></span>
+                        <input type="text" (keyup.enter)="userAge = $any($event.target).value" (keyup.escape)="userAge =''" pInputText placeholder="Age" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="text-center p-3 border-round-sm bg-primary font-bold">
+                    <h3>Name:{{userName}}</h3>
+                    <h3>Email:{{userEmail}}</h3>
+                    <h3>Age:{{userAge}}</h3>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="flex flex-wrap align-items-center justify-content-center mt-3">
+    <div class="border-round bg-primary-100 w-12rem p-3 m-3">
+        <button class="min-w-full border-round bg-primary font-bold p-3 flex align-items-center justify-content-center"(click)="click()" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()" (mouseover)="mouseover()" (dblclick) ="dblclick()">
+        {{msg}}
+        </button>
+    </div>
+</div>

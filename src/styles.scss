@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css", "primeflex/primeflex.css";
+
+.p-menubar{
+    background-image: url(assets/img/logo.png) !important;
+    color: aqua;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size:30%;
+    background-color: black !important;
+    height: 100px;
+}
+
+.p-tabview .p-tabview-panels {
+    background-color: black !important;
+}

@@ -1,0 +1,40 @@
+<div class="card">
+    <p-table [value]="empList" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Employee Name</th>
+                <th>Employee Age</th>
+                <th>Employee Email</th>
+                <th>Employee PhoneNo</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body">
+            <tr *ngFor="let employee of empList">
+                <td >{{employee.empName}}</td>
+                <td >{{employee.empAge}}</td>
+                <td >{{employee.empEmail}}</td>
+                <td >{{employee.empPhone}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<div class="card flex justify-content-center">
+    <p-card header="Advanced Card" subheader="Card Subheader" [style]="{ width: '360px' }" >
+        <ng-template pTemplate="header">
+            <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
+        </ng-template>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
+            quas! 
+        </p>
+        <h5 >
+            {{}}
+        </h5>
+        <ng-template pTemplate="footer">
+            <p-button label="Save" icon="pi pi-check"></p-button>
+            <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
+        </ng-template>
+    </p-card>
+</div>
+
