@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenubarModule} from 'primeng/menubar';
@@ -15,14 +15,21 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { TravelComponent } from './travel/travel.component';
+import { PlacesComponent } from './places/places.component';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 @NgModule({
   declarations: [
     AppComponent,
     AboutComponent,
     RidesComponent,
-    HomeComponent
+    HomeComponent,
+    TravelComponent,
+    PlacesComponent,
+
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     MenubarModule,
@@ -33,7 +40,9 @@ import { ButtonModule } from 'primeng/button';
      CheckboxModule,
      RadioButtonModule,
      TableModule,
-    ButtonModule
+    ButtonModule,
+    OverlayPanelModule,
+
   
   ],
   providers: [],
