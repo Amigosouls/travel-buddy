@@ -1,12 +1,11 @@
 import { Component,OnInit } from '@angular/core';
-import { Validators } from '@angular/forms';
-
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-tickets',
   templateUrl: './tickets.component.html',
   styleUrls: ['./tickets.component.css']
 })
-export class TicketsComponent  {
+export class TicketsComponent implements OnInit  {
 
   destinationPlace = ['Ooty','Coonoor','Kothagiri','Gudalur'];
   
@@ -16,6 +15,22 @@ export class TicketsComponent  {
     alert("Thank You for confirming Ticket")
     console.log(form.value);
   }
+
+  constructor (){}
+
+  reviewForm : FormGroup | any;
+  reviewerName : FormControl  | any;
+  placeVisited : FormControl | any;
+  modeOfTravel : FormControl | any;
+  rangeOfTravel : FormControl | any;
+
+
+  ngOnInit(): void {
+    this.reviewForm = new FormGroup({
+      
+    })
+  }
+
 
 }
 
