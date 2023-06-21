@@ -18,6 +18,9 @@ import { ButtonModule } from 'primeng/button';
 import { TravelComponent } from './travel/travel.component';
 import { PlacesComponent } from './places/places.component';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { TicketsComponent } from './tickets/tickets.component';
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +29,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     HomeComponent,
     TravelComponent,
     PlacesComponent,
+    TicketsComponent,
 
   ],
   imports: [
@@ -42,8 +46,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
      TableModule,
     ButtonModule,
     OverlayPanelModule,
-
-  
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

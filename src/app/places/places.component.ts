@@ -52,8 +52,8 @@ export class PlacesComponent {
       
       if(val.substring(0,1)==place['id'])
       {
-        if(place['ticket']<1){
-          alert('can\'t go below 0');
+        if(place['ticket']<=1){
+          alert('can\'t go below 1');
           break;
         }
         place['ticket']-=1;

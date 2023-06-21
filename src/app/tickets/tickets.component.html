@@ -1,0 +1,137 @@
+<div
+  class="bg-bluegray-300 grid-md:justify-content-between justify-content-center"
+>
+  {{ ticketForm.value | json }}
+  <h1>First Class Ticket</h1>
+  <form
+    #ticketForm="ngForm"
+    (ngSubmit)="ticketForm.form.valid && onSubmit(ticketForm)"
+    novalidate
+  >
+    <div class="form-group col-6 col-offset-2">
+      <label class="">Customer Name</label>
+      <input
+        #username="ngModel"
+        required
+        name="username"
+        minlength="6"
+        maxlength="12"
+        class="form-control"
+        [(ngModel)]="ticketObj.customerName"
+        type="text"
+        [ngClass]="{
+          'form-invalid-feedback':
+            username.invalid && (username.dirty || username.touched),
+          'form-valid-feedback': username.valid && (username.dirty || username.touched)
+        }"
+      />
+      <div
+        class="form-invalid-feedback"
+        *ngIf="username.errors && (username.dirty || username.touched)"
+      >
+        <p *ngIf="username.errors?.['required']">Customer name is required</p>
+        <p *ngIf="username.errors?.['minlength']">
+          Customer name must contain at least the 6 character
+        </p>
+        <p *ngIf="username.errors?.['maxlength']">
+            Customer name must contain only 12 character
+          </p>
+      </div>
+      <div class="form-valid-feedback" *ngIf="username.valid">
+        <p *ngIf="username.valid">Customer Name is good</p>
+      </div>
+    </div>
+    <div class="form-group col-6 col-offset-2">
+        <label class="">Customer Age</label>
+        <input
+          #userage="ngModel"
+          required
+          name="userage"
+          min="18"
+          class="form-control"
+          [(ngModel)]="ticketObj.customerAge"
+          type="number"
+          [ngClass]="{
+            'form-invalid-feedback':
+              userage.invalid && (userage.dirty || userage.touched),
+            'form-valid-feedback': userage.valid && (userage.dirty || userage.touched)
+          }"
+        />
+        <div
+          class="form-invalid-feedback"
+          *ngIf="userage.errors && (userage.dirty || userage.touched)"
+        >
+          <p *ngIf="userage.errors?.['required']">Customer age is required</p>
+          <p *ngIf="userage.errors?.['min']">
+            Customer age should be at least 18
+          </p>
+        </div>
+        <div class="form-valid-feedback" *ngIf="userage.valid">
+          <p *ngIf="userage.valid">Customer age is good</p>
+        </div>
+      </div>
+      <div class="form-group col-6 col-offset-2">
+        <label class="">Customer Email</label>
+        <input
+          #email="ngModel"
+          required
+          name="email"
+          class="form-control"
+          [(ngModel)]="ticketObj.customerEmail"
+          type="email"
+          pattern="[^ @]*@[^ @]*"
+          [ngClass]="{
+            'form-invalid-feedback':
+              username.invalid && (email.dirty || email.touched),
+            'form-valid-feedback': email.valid && (email.dirty || email.touched)
+          }"
+        />
+        <div
+          class="form-invalid-feedback"
+          *ngIf="email.errors && (email.dirty || email.touched)"
+        >
+          <p *ngIf="email.errors?.['required']">Customer email is required</p>
+          <p *ngIf="email.errors?.['pattern']">
+            Customer email must contain @ character
+          </p>
+        </div>
+        <div class="form-valid-feedback" *ngIf="email.valid">
+          <p *ngIf="email.valid">Customer email is good</p>
+        </div>
+      </div>
+      <div class="form-group col-6 col-offset-2">
+        <label class="">Destination</label>
+        <input
+          #destination="ngModel"
+          required
+          readonly
+          id="inpdesti"
+          name="email"
+          class="form-control"
+          [(ngModel)]="ticketObj.destination"
+          type="email"
+          [ngClass]="{
+            'form-invalid-feedback':
+            destination.invalid && (destination.dirty ||destination.touched),
+            'form-valid-feedback': destination.valid && (destination.dirty || destination.touched)
+          }"
+        />
+        <select name="destinationList" id="destinationList" onclick="inpdesti.value=destinationList.value">
+            <option value="">Select A place</option>
+            <option *ngFor="let place of destinationPlace">{{place}}</option>
+        </select>
+        <div
+          class="form-invalid-feedback"
+          *ngIf="destination.errors && (destination.dirty || destination.touched)"
+        >
+          <p *ngIf="destination.errors?.['required']">Destination must be Selected</p>
+         
+        </div>
+        <div class="form-valid-feedback" *ngIf="destination.valid">
+          <p *ngIf="destination.valid">Destination Selected</p>
+        </div>
+      </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="ticketForm.invalid">Book Ticket</button>
+  </form>
+</div>
