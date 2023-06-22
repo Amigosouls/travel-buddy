@@ -11,24 +11,35 @@ export class TicketsComponent implements OnInit  {
   
   ticketObj = new TicketForm();
 
+  
+  onSubmission(form : any){
+    console.log(form.value)
+  }
+
   onSubmit(form:any){
     alert("Thank You for confirming Ticket")
     console.log(form.value);
   }
-
-  constructor (){}
-
-  reviewForm : FormGroup | any;
+  reviewForm! : FormGroup ;
   reviewerName : FormControl  | any;
   placeVisited : FormControl | any;
   modeOfTravel : FormControl | any;
   rangeOfTravel : FormControl | any;
+   gender: FormControl | any;
+ 
 
 
-  ngOnInit(): void {
+  ngOnInit() {
+
+    this.reviewerName = new FormControl('',[Validators.required]);
+    this.placeVisited = new FormControl('');
+    this.gender = new FormControl('',[Validators.required]);
     this.reviewForm = new FormGroup({
-      
-    })
+      reviewerName : this. reviewerName,
+      placeVisited : this.placeVisited,
+      gender :this.gender
+     
+    });
   }
 
 
