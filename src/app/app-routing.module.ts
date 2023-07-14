@@ -1,44 +1,44 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RidesComponent } from './rides/rides.component';
-import { AboutComponent } from './about/about.component';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { CustomerComponent } from './customer/customer.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 import { HomeComponent } from './home/home.component';
-import { PlacesComponent } from './places/places.component';
-import { TicketsComponent } from './tickets/tickets.component';
-import { TravelProductsComponent } from './travel-products/travel-products.component';
-import { MenComponent } from './travel-products/men/men.component';
-import { KidsComponent } from './travel-products/kids/kids.component';
-import { WomenComponent } from './travel-products/women/women.component';
-import { MenClothingComponent } from './travel-products/men/men-clothing/men-clothing.component';
-import { MenFootwearComponent } from './travel-products/men/men-footwear/men-footwear.component';
-import { WomenFootwearComponent } from './travel-products/women/women-footwear/women-footwear.component';
-import { WomenClothingComponent } from './travel-products/women/women-clothing/women-clothing.component';
-import { KidsClothingComponent } from './travel-products/kids/kids-clothing/kids-clothing.component';
-import { KidsFootwearComponent } from './travel-products/kids/kids-footwear/kids-footwear.component';
-import { ProductsComponent } from './products/products.component';
+import { authGuard } from './auth.guard';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
+
 const routes: Routes = [
-  {path:'about', component:AboutComponent},
-  {path:'rides', component:RidesComponent},
-  {path:'home', component:HomeComponent},
-  {path:'travel', component:PlacesComponent},
-  {path:'ticket', component:TicketsComponent},
-  {path:'commonproduct/:id', component:ProductsComponent},
-  {path:'commonproduct', component:ProductsComponent},
-  {path:'products', component:TravelProductsComponent,
-    children:[
-      {path:'men',component:MenComponent, children:[
-        {path:'men-clothing', component:MenClothingComponent},
-        {path:'men-footwear',component:MenFootwearComponent}
-      ]},
-      {path:'women',component:WomenComponent, children:[
-        {path:'women-clothing', component:WomenClothingComponent},
-        {path:'women-footwear',component:WomenFootwearComponent}
-      ]},
-      {path:'kid',component:KidsComponent, children:[
-        {path:'kids-clothing', component:KidsClothingComponent},
-        {path:'kids-footwear', component:KidsFootwearComponent}
-      ]}
-    ]}
+
+  {
+    path:'admin',
+    component:AdminHomeComponent,
+    canActivate:[authGuard]
+  },
+  {
+    path:'customer',
+    component:CustomerComponent,
+    canActivate:[authGuard]
+  },
+  {
+    path:'guest',
+    component:ContactUsComponent,
+    canActivate:[authGuard]
+  },
+  {
+    path:'home',
+    component:HomeComponent,
+    canActivate:[authGuard]
+  },
+  {
+    path:'forbidden',
+    component : ForbiddenComponent,
+  },
+  {
+    path:'',
+    redirectTo:'/home',
+    pathMatch:'full'
+  }
+ 
 ];
 
 @NgModule({

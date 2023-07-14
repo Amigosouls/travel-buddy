@@ -1,0 +1,11 @@
+{
+    "Users":[
+        {
+            "id":1,
+            "username":"Jacob",
+            "isLogged":false,
+            "email":"jacobshaik@123.com",
+            "role":"admin"
+        }
+    ]
+}
