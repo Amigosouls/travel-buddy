@@ -1,0 +1,22 @@
+<p-toast></p-toast>
+
+<div class="card" bg-blue-400 bg-primary>
+  <p-menubar >
+    <ng-template pTemplate="start">
+      <div class="card">
+        <p-tabMenu [model]="items" class="ms-auto"></p-tabMenu>
+    </div>
+    </ng-template>
+    <ng-template pTemplate="end" class="me-auto">
+      <button id="loginbtn" routerLink="/login" class="btn btn-primary">Login</button>
+      <span id="nav" ></span>
+      <div class="dropdown">
+        <button class="dropbtn"></button>
+        <div class="dropdown-content">
+          <button (click)="logout()" class="btn btn-warning">Logout</button>
+      
+        </div>
+      </div>
+    </ng-template>   
+  </p-menubar>
+</div>

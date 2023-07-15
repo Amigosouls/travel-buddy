@@ -1,8 +1,14 @@
 export interface Users{
-    id:string,
+    id:number,
     role:string,
     username:string,
+    password:string,
     isLogged : boolean,
-    email:string,
+    useremail:string,
     
+}
+
+export interface LoginUser{
+    useremail:string,
+    password:string
 }

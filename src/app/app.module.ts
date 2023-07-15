@@ -21,6 +21,11 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { HomeComponent } from './home/home.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { HttpClientModule } from  '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { MessageService } from 'primeng/api';
+import { FormGroup } from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
+import { NavbarComponent } from './navbar/navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +34,8 @@ import { HttpClientModule } from  '@angular/common/http';
     ContactUsComponent,
     HomeComponent,
     ForbiddenComponent,
+    LoginComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -47,8 +54,10 @@ import { HttpClientModule } from  '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ToastModule
+
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

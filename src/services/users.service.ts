@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Users } from 'src/modal/user.modal';
+import {Subject} from 'rxjs'
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
+  value:boolean=false;
+  public confirmLogin = new Subject<boolean>();
 
   constructor(private httpClient : HttpClient) { }
   
@@ -12,16 +15,21 @@ export class UsersService {
    return this.httpClient.get<Users[]>('http://localhost:3000/Users?isLogged_like=true');
   }
 
-  activeUsers():any {
-    
-    return this.getUsersActive().subscribe(
-      (response)=>{
-       
+  getUsers(){
+    return this.httpClient.get<Users[]>('http://localhost:3000/Users')
+  }
+  getAuthStatus():boolean{
+    this.confirmLogin.subscribe(
+      data =>{
+        this.value=data;
+
       }
     )
-    
+    console.log(this.value);
+    return this.value;
   }
-  
-  
+  updateUsers(userObj:Users,id:number){
+    this.httpClient.put<Users[]>('http://localhost:3000/Users/'+id,userObj).subscribe()
+  }
 }
 

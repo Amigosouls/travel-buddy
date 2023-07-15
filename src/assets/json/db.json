@@ -1,11 +1,12 @@
 {
-    "Users":[
-        {
-            "id":1,
-            "username":"Jacob",
-            "isLogged":false,
-            "email":"jacobshaik@123.com",
-            "role":"admin"
-        }
-    ]
+  "Users": [
+    {
+      "id": 1,
+      "username": "Jacob",
+      "isLogged": true,
+      "useremail": "jacobshaik@123.com",
+      "role": "admin",
+      "password": "admin@123"
+    }
+  ]
 }
