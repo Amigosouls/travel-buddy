@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
     for (const user of this.userList) {
       if(user.useremail=== form.value.useremail && user.password=== form.value.password)
       {
-        this.messages.add({ severity: 'success', summary: 'Logged In', detail:'Login Successful' })
+        this.messages.add({ severity: 'success', summary: 'Logged In', detail:'Login Successful' });
         user.isLogged=true;
         this.userObj.updateUsers(user,user.id);
         LoginComponent.loggedUser = user;

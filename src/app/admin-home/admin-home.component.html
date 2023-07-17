@@ -1,43 +1,209 @@
- <!--Tabs-->
- <div class="container-fluid user-bg">
-    <ul class="nav nav-tabs justify-content-center flex-sm-row" id="myTab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active tab_icon" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
-          role="tab" aria-controls="home" aria-selected="true">Users</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link tab_icon" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
-          role="tab" aria-controls="profile" aria-selected="false">Task Assigned</button>
-      </li>
-      <li class="nav-item " role="presentation">
-        <button class="nav-link tab_icon" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
-          role="tab" aria-controls="contact" aria-selected="false">Create task</button>
-      </li>
-    </ul>
-    <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active " id="home" role="tabpanel" aria-labelledby="home-tab">
-        <div class="container">
-            <h3>Users Available</h3>
-            <table border="3px ">
-                <tr>
-                    <th>User Id</th>
-                    <th>User Name</th>
-                    <th>Users email</th>
-                    <th>Assign Task</th>
-                </tr>
-                <tr *ngFor="let user of filteredUsers" >    
-                    <td>{{user.id}}</td>
-                    <td>{{user.username}}</td>
-                    <td>{{user.useremail}}</td>
-                    <td><button (click)="assignTask(user)"  class="btn btn-success">Assign Task</button></td>
-                </tr>
-            </table>
+<!--Tabs-->
+<div class="container-fluid user-bg">
+  <ul class="nav nav-tabs justify-content-center flex-sm-row" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active tab_icon" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+        role="tab" aria-controls="home" aria-selected="true">
+        Users
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link tab_icon" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
+        role="tab" aria-controls="profile" aria-selected="false">
+        Task Assigned
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link tab_icon" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
+        role="tab" aria-controls="contact" aria-selected="false">
+        Create task
+      </button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <div class="container">
+        <h3>Users Available</h3>
+        <table border="3px " class="table">
+          <tr>
+            <th>User Id</th>
+            <th>User Name</th>
+            <th>Users email</th>
+            <th>Assign Task</th>
+          </tr>
+          <tr *ngFor="let user of filteredUsers">
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.useremail }}</td>
+            <td>
+              <button data-bs-toggle="modal" data-bs-target="#assignTask"
+                (click)="assignTask(user); setInputFields(user)" class="btn btn-success bg-dark">
+                Assign Task
+              </button>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="modal fade" id="assignTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Assign Task
+              </h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form [formGroup]="assigntaskform" (ngSubmit)="
+                  assigntaskform.valid && onSubmission(assigntaskform)
+                " novalidate>
+                <div class="form-group">
+                  <div class="input-group">
+                    <input type="text" readonly formControlName="username" class="form-control" placeholder="User Name"
+                      [ngClass]="{
+                        'is-invalid':
+                          username.errors &&
+                          (username.touched || username.dirty),
+                        'is-valid': username.valid
+                      }" />
+                  </div>
+                  <span class="feedback" *ngIf="username.invalid && username.touched">
+                    <!--*ngIf Directive-->
+                    <strong *ngIf="username.errors">Username is required</strong>
+                  </span>
+                </div>
+                <div class="form-group mt-3">
+                  <div class="input-group">
+                    <input type="text" readonly formControlName="userid" class="form-control" placeholder="Lastname"
+                      [ngClass]="{
+                        'is-invalid':
+                          assigntaskform.errors &&
+                          (userid.touched || userid.dirty),
+                        'is-valid': userid.valid
+                      }" />
+                  </div>
+                  <span class="feedback" *ngIf="userid.invalid && userid.touched">
+                    <!--*ngIf Directive-->
+                    <strong *ngIf="userid.errors">Password is required</strong>
+                  </span>
+                </div>
+                <div class="form-group mt-3">
+                  <label for="state" class="align-content-start flex">State</label>
+                  <select name="citySelect" formControlName="selecttask" class="form-control" [ngClass]="{
+                      'is-invalid':
+                        assigntaskform.errors &&
+                        (selecttask.touched || selecttask.dirty),
+                      'is-valid': selecttask.valid
+                    }" (click)="setTask(selecttask.value)">
+                    <option value="{{ task.task_name }}" *ngFor="let task of taskList">
+                      {{ task.task_name }}
+                    </option>
+                  </select>
+                  <span class="feedback d-block" *ngIf="selecttask.invalid && selecttask.touched">
+                    <!--*ngIf Directive-->
+                    <strong *ngIf="selecttask.errors"> Select a state</strong>
+                  </span>
+                </div>
+                <div class="form-group mt-3">
+                  <div class="input-group">
+                    <input type="text" formControlName="taskid" class="form-control" placeholder="Dealership Name"
+                      [ngClass]="{
+                        'is-invalid':
+                          assigntaskform.errors &&
+                          (taskid.touched || taskid.dirty),
+                        'is-valid': taskid.valid
+                      }" />
+                  </div>
+                  <span class="feedback" *ngIf="taskid.invalid && taskid.touched">
+                    <!--*ngIf Directive-->
+                    <strong *ngIf="taskid.errors">
+                      Provide dealership name
+                    </strong>
+                  </span>
+                </div>
+                <div class="form-group mt-3">
+                  <div class="input-group">
+                    <input type="text" formControlName="startdate" class="form-control" placeholder="Dealership code"
+                      [ngClass]="{
+                        'is-invalid':
+                          assigntaskform.errors &&
+                          (startdate.touched || startdate.dirty),
+                        'is-valid': startdate.valid
+                      }" />
+                  </div>
+                  <span class="feedback d-block" *ngIf="startdate.invalid && startdate.touched">
+                    <!--*ngIf Directive-->
+                    <strong *ngIf="startdate.errors">
+                      Provide dealership code</strong>
+                  </span>
+                </div>
+                <div class="form-group mt-3">
+                  <div class="input-group">
+                    <input type="text" formControlName="enddate" class="form-control" placeholder="City" [ngClass]="{
+                        'is-invalid':
+                          assigntaskform.errors &&
+                          (enddate.touched || enddate.dirty),
+                        'is-valid': enddate.valid
+                      }" />
+                  </div>
+                  <span class="feedback d-block" *ngIf="enddate.invalid && enddate.touched">
+                    <!--*ngIf Directive-->
+                    <strong *ngIf="enddate.errors"> City is required</strong>
+                  </span>
+                </div>
+
+                <div class="form-group mt-3">
+                  <div class="input-group">
+                    <input type="text" formControlName="taskcode" class="form-control" placeholder="GST Number"
+                      [ngClass]="{
+                        'is-invalid':
+                          assigntaskform.errors &&
+                          (taskcode.dirty || taskcode.touched),
+                        'is-valid': taskcode.valid
+                      }" />
+                  </div>
+                  <span class="feedback d-block" *ngIf="taskcode.invalid && taskcode.touched">
+                    <!--*ngIf Directive-->
+                    <strong *ngIf="taskcode.errors">
+                      GST number is required</strong>
+                  </span>
+                </div>
+                <div class="form-group mt-3">
+                  <div class="input-group">
+                    <input type="text" formControlName="taskpriority" class="form-control" placeholder="GST Number"
+                      [ngClass]="{
+                        'is-invalid':
+                          assigntaskform.errors &&
+                          (taskpriority.dirty || taskpriority.touched),
+                        'is-valid': taskpriority.valid
+                      }" />
+                  </div>
+                  <span class="feedback d-block" *ngIf="taskpriority.valid && taskpriority.touched">
+                    <!--*ngIf Directive-->
+                    <strong *ngIf="taskpriority.errors">
+                      GST number is required</strong>
+                  </span>
+                </div>
+                <button class="form-control mt-5 btn bg-dark btn-warning" style="color: yellow" type="submit"
+                  data-bs-dismiss="modal">
+                  Assign Task
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-        
+    </div>
+
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="container">
+        <table class="">
+
+        </table>
       </div>
-      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-        <div class="container" id='myRequests'>
-        </div>
-      </div>
+    </div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+      <div class="container" id="myRequests">hello</div>
+    </div>
+  </div>
+</div>
