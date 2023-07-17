@@ -4,6 +4,7 @@ import * as $ from 'jquery';
 import { UsersService } from 'src/services/users.service';
 import { Users } from 'src/modal/user.modal';
 import { MessageService } from 'primeng/api';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-navbar',
@@ -30,20 +31,14 @@ export class NavbarComponent implements OnInit {
           { label: 'Rides', icon: 'pi pi-fw pi-calendar',routerLink:'rides' },
         
       ];
-
     this.userObj.getUsersActive().subscribe(
       (res)=>{
         this.activeUser=res;
         if(this.activeUser.length>=1){
-          console.log('hi')
           this.userLogged=true;
-          $('#loginbtn').attr('hidden','true');
-          $('.dropbtn').text(this.activeUser[0].username)
-          this.messages.add({ severity: 'success', summary: 'Welcome', detail:'Hi'+this.activeUser[0].username })
+          this.messages.add({ severity: 'success', summary: 'Welcome', detail:'Hi'+this.activeUser[0].username });
         }
-        else{
-          //$('.dropbtn').attr('hidden','true');
-        }
+      
       }
       
     );  
@@ -58,6 +53,14 @@ export class NavbarComponent implements OnInit {
     }
 
   logout(){
-        console.log('logged out')
+    this.userLogged=false;
+    this.activeUser[0].isLogged=false;
+    this.userObj.updateUsers(this.activeUser[0],this.activeUser[0].id);
+        setTimeout(() => {
+        this.messages.add({ severity: 'warn', summary: 'Logged Out', detail:"Your Session Expired" });
+        LoginComponent.loggedUser.role='guest';
+      },3000 );
+        
+
   }
 }

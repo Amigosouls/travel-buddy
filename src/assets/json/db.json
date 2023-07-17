@@ -7,6 +7,64 @@
       "useremail": "jacobshaik@123.com",
       "role": "admin",
       "password": "admin@123"
+    },
+    {
+      "id": 2,
+      "username": "Victor",
+      "isLogged": false,
+      "useremail": "victordwayn@gmail.com",
+      "role": "customer",
+      "password": "victorrock"
+    },
+    {
+      "id": 3,
+      "username": "Tony Jaa",
+      "isLogged": false,
+      "useremail": "tonyjaa@123.com",
+      "role": "admin",
+      "password": "badtony22"
+    }
+  ],
+  "Tasks": [
+    {
+      "id": 1,
+      "task_name": "Designing",
+      "task_code": "4211gg162",
+      "start_date": "12/11/2022",
+      "end_date": "17/11/2022",
+      "priority": "high"
+    },
+    {
+      "id": 2,
+      "task_name": "Coding",
+      "task_code": "4224351ggaab2",
+      "start_date": "02/02/2023",
+      "end_date": "17/02/2023",
+      "priority": "high"
+    },
+    {
+      "id": 3,
+      "task_name": "Deployment",
+      "task_code": "725478GSD72",
+      "start_date": "23/03/2023",
+      "end_date": "29/03/2023",
+      "priority": "medium"
+    },
+    {
+      "id": 4,
+      "task_name": "Server Maintainance",
+      "task_code": "9374986HJFS283",
+      "start_date": "25/04/2021",
+      "end_date": "30/04/2021",
+      "priority": "high"
+    },
+    {
+      "id": 5,
+      "task_name": "Software Update",
+      "task_code": "8643fwy282",
+      "start_date": "12/07/2023",
+      "end_date": "20/07/2023",
+      "priority": "low"
     }
   ]
 }

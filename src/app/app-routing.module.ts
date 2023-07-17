@@ -13,7 +13,7 @@ const routes: Routes = [
   {
     path:'admin',
     component:AdminHomeComponent,
-    canActivate:[authGuard]
+    //canActivate:[authGuard]
   },
   {
     path:'customer',

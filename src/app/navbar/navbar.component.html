@@ -8,10 +8,10 @@
     </div>
     </ng-template>
     <ng-template pTemplate="end" class="me-auto">
-      <button id="loginbtn" routerLink="/login" class="btn btn-primary">Login</button>
+      <button id="loginbtn" *ngIf="!userLogged" routerLink="/login" class="btn btn-primary">Login</button>
       <span id="nav" ></span>
       <div class="dropdown">
-        <button class="dropbtn"></button>
+        <button class="dropbtn" *ngIf="userLogged">{{activeUser[0].username}}</button>
         <div class="dropdown-content">
           <button (click)="logout()" class="btn btn-warning">Logout</button>
       
