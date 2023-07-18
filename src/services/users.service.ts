@@ -31,5 +31,9 @@ export class UsersService {
   updateUsers(userObj:Users,id:number){
     this.httpClient.put<Users[]>('http://localhost:3000/Users/'+id,userObj).subscribe()
   }
+  postUsers(user:Users){
+    this.httpClient.post<Users[]>('http://localhost:3000/Users',user).subscribe();
+  }
+
 }
 

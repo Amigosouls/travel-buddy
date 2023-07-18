@@ -25,12 +25,13 @@ export interface Tasks{
 export interface AssignedTask{
     id:number,
     userid:number,
-    selectedtask:string,
+    username:string
+    selecttask:string,
     taskid:number,
     startdate:string,
     enddate:string,
     taskcode:string,
     taskpriority:string,
-    task_completed:boolean
+    task_completed:string
 
 }

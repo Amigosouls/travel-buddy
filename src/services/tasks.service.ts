@@ -16,4 +16,10 @@ export class TasksService {
   posttTasks(itemToPut:AssignedTask){
     this.http.post<AssignedTask>('http://localhost:3000/Task_List',itemToPut).subscribe();
   }
+  getAssignedTasks(){
+    return this.http.get<AssignedTask[]>('http://localhost:3000/Task_List');
+  }
+  putTask(task:AssignedTask){
+    this.http.put<AssignedTask[]>('http://localhost:3000/Task_List/'+task.id,task).subscribe();
+  }
 }

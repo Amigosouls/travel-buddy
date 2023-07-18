@@ -1,61 +1,33 @@
 <legend>
   <h1>Sign in</h1>
   <div class="container">
-    <form
-      [formGroup]="loginForm"
-      
-      class="was-validated needs-validation"
-      (ngSubmit)="loginForm.valid && onSubmission(loginForm)"
-      novalidate
-    >
-        <div class="form-floating mb-2">
-          <input
-            type="text"
-            class="form-control"
-            formControlName="useremail"
-            placeholder="Enter Username"
-            aria-label="Username"
-            id="log_uname"
-            required
-            [ngClass]="{
-                'is-invalid':
-                  loginForm.errors && (useremail.touched || useremail.dirty),
-                'is-valid': useremail.valid
-              }"
-          />
-          <label for="log_uname">User Email</label>
-          <div class="valid-feedback">Cool!</div>
-          <div class="invalid-feedback">Username is Required</div>
-        </div>
+    <form [formGroup]="loginForm" class="was-validated needs-validation"
+      (ngSubmit)="loginForm.valid && onSubmission(loginForm)" novalidate>
+      <div class="form-floating mb-2">
+        <input type="text" class="form-control" formControlName="useremail" placeholder="Enter Username"
+          aria-label="Username" id="log_uname" required [ngClass]="{
+            'is-invalid':
+              loginForm.errors && (useremail.touched || useremail.dirty),
+            'is-valid': useremail.valid
+          }" />
+        <label for="log_uname">User Email</label>
+        <div class="valid-feedback">Cool!</div>
+        <div class="invalid-feedback">Username is Required</div>
+      </div>
 
-        <div class="form-floating mb-2">
-          <input
-            type="password"
-            class="form-control"
-            placeholder="$ value"
-            aria-label="Username"
-            formControlName="password"
-            aria-describedby="footer-form"
-            id="log_pass"
-            name="pass"
-            required
-          />
-          <label>Password</label>
-          <div class="valid-feedback">Looks good!</div>
-          <div class="invalid-feedback">Password is Must!</div>
-        </div>
-        <div>
-          <h6>
-            New Here? Get an Account
-            <a
-              href="#signUpModel"
-              data-bs-toggle="modal"
-              data-bs-target="#signUpModel"
-              data-bs-dismiss="modal"
-              >Here</a
-            >
-          </h6>
-        </div>
+      <div class="form-floating mb-2">
+        <input type="password" class="form-control" placeholder="$ value" aria-label="Username"
+          formControlName="password" aria-describedby="footer-form" id="log_pass" name="pass" required />
+        <label>Password</label>
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Password is Must!</div>
+      </div>
+      <div>
+        <h6>
+          New Here? Get an Account
+          <a href="#signUpModel" data-bs-toggle="modal" data-bs-target="#signUpModel" data-bs-dismiss="modal">Here</a>
+        </h6>
+      </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
           Login
@@ -67,3 +39,92 @@
     </form>
   </div>
 </legend>
+
+<div class="modal fade" id="signUpModel" tabindex="-1" aria-labelledby="modelSignUp" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modelSignUp">Sign Up</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="signupform" (ngSubmit)="signupform.valid && registerUser(signupform)" novalidate>
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" formControlName="firstname" class="form-control" placeholder="User Name" [ngClass]="{
+                  'is-invalid':
+                    signupform.errors && (regusername.touched || regusername.dirty),
+                  'is-valid': regusername.valid
+                }" />
+            </div>
+            <span class="feedback" *ngIf="regusername.invalid && regusername.touched">
+              <!--*ngIf Directive-->
+              <strong *ngIf="regusername.errors?.required">Username is required</strong>
+
+            </span>
+          </div>
+      
+          <div class="form-group mt-3">
+            <div class="input-group">
+              <input type="email" formControlName="useremail" class="form-control" placeholder="email" [ngClass]="{
+                  'is-invalid':
+                    signupform.errors && (userregemail.touched || userregemail.dirty),
+                  'is-valid': useremail.valid
+                }" />
+            </div>
+            <span class="feedback" *ngIf="userregemail.invalid && userregemail.touched">
+              <!--*ngIf Directive-->
+              <strong *ngIf="userregemail.errors?.required">
+                Email is required</strong>
+              <strong *ngIf="userregemail.errors?.email">Not a valid email</strong>
+            </span>
+          </div>
+          <div class="form-group mt-3">
+            <div class="input-group">
+              <input type="password" class="form-control" placeholder="password" formControlName="password" />
+            </div>
+            <span class="feedback" *ngIf="userpassword.invalid && userpassword.touched ">
+              <!--*ngIf Directive-->
+              <strong *ngIf="userpassword.errors?.pattern">
+                pattern doesn't match</strong>
+              <strong *ngIf="userpassword.errors?.required">
+                Password is required</strong>
+            </span>
+          </div>
+          <div class="form-group mt-3">
+            <div class="input-group">
+              <input type="password" formControlName="confirmpassword" class="form-control"
+                placeholder="Confirm Password" [ngClass]="{
+                  'is-invalid':
+                    signupform.errors &&
+                    (confirmpassword.touched || confirmpassword.dirty),
+                  'is-valid': confirmpassword.valid
+                }" />
+            </div>
+            <span class="feedback" *ngIf="confirmpassword.invalid&& confirmpassword.touched">
+              <!--*ngIf Directive-->
+              <strong *ngIf="confirmpassword.errors?.required">
+                confirmpassword is required</strong>
+
+              <strong *ngIf=confirmpassword.errors.matchPasswords>
+                password don't match </strong>
+            </span>
+          </div>
+          <div class="form-group mt-3 text-center">
+            <input name="companytype" type="radio" formControlName="role" class="ms-2" value="admin" />
+            <label class="ms-2" for="companytype">Admin</label>
+            <input name="companytype" type="radio" formControlName="role" class="ms-3" value="customer" />
+            <label class="ms-2" for="companytype">Customer</label>
+            <span class="feedback d-block" *ngIf="role.invalid">
+              <!--*ngIf Directive-->
+              <strong *ngIf="role.errors?.required">
+                Please select an option </strong>
+            </span>
+          </div>
+          
+          <button class="form-control mt-5 btn" type="submit">Sign Up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
