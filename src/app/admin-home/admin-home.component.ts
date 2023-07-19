@@ -87,26 +87,20 @@ export class AdminHomeComponent implements OnInit {
     });
     this.userObj.getUsers().subscribe((res) => {
       this.userList = res;
-      for (const task of this.userTaskList) {
-        for (const user of this.userList) {
-          if (user.id == task.userid) {
-            if (task.task_completed == 'true') {
-              this.filteredUsers.push(user);
-              break;
-            }
-          }
+      this.taskObj.getUserTasks(this.userList[0].id).subscribe(
+        (response)=>{
+          this.userTasks=response;
+          
         }
-      }
+      )
     });
-
-
-    
     //Get Task Lists
     this.taskObj.getAssignedTasks().subscribe(
       (response) => {
-        this.userTasks = response;
+        this.userTaskList = response;
       }
     );
+    return 
   }
   assignTask(user: Users) { }
   onSubmission(form: FormGroup) {

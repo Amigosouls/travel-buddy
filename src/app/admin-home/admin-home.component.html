@@ -216,7 +216,7 @@
             <td>{{task.enddate}}</td>
             <td>{{task.taskpriority}}</td>
             <td>{{task.task_completed=="true" ? 'Completed':'Pending' }}</td>
-            <td><button class="btn btn-light bg-primary" data-bs-toggle="modal" (click)="setStatus(task);" data-bs-target="#changeStatus">Set
+            <td *ngIf="activeUserRole!='admin'"><button class="btn btn-light bg-primary" data-bs-toggle="modal" (click)="setStatus(task);" data-bs-target="#changeStatus">Set
                 Status</button></td>
           </tr>
         </table>

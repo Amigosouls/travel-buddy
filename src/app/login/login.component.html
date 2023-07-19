@@ -4,11 +4,11 @@
     <form [formGroup]="loginForm" class="was-validated needs-validation"
       (ngSubmit)="loginForm.valid && onSubmission(loginForm)" novalidate>
       <div class="form-floating mb-2">
-        <input type="text" class="form-control" formControlName="useremail" placeholder="Enter Username"
+        <input type="text" class="form-control" formControlName="loginuseremail" placeholder="Enter Username"
           aria-label="Username" id="log_uname" required [ngClass]="{
             'is-invalid':
-              loginForm.errors && (useremail.touched || useremail.dirty),
-            'is-valid': useremail.valid
+              loginForm.errors && (loginuseremail.touched || loginuseremail.dirty),
+            'is-valid': loginuseremail.valid
           }" />
         <label for="log_uname">User Email</label>
         <div class="valid-feedback">Cool!</div>
@@ -17,7 +17,7 @@
 
       <div class="form-floating mb-2">
         <input type="password" class="form-control" placeholder="$ value" aria-label="Username"
-          formControlName="password" aria-describedby="footer-form" id="log_pass" name="pass" required />
+          formControlName="loginpassword" aria-describedby="footer-form" id="log_pass" name="pass" required />
         <label>Password</label>
         <div class="valid-feedback">Looks good!</div>
         <div class="invalid-feedback">Password is Must!</div>
@@ -51,43 +51,41 @@
         <form [formGroup]="signupform" (ngSubmit)="signupform.valid && registerUser(signupform)" novalidate>
           <div class="form-group">
             <div class="input-group">
-              <input type="text" formControlName="firstname" class="form-control" placeholder="User Name" [ngClass]="{
+              <input type="text" formControlName="username" class="form-control" placeholder="User Name" [ngClass]="{
                   'is-invalid':
-                    signupform.errors && (regusername.touched || regusername.dirty),
-                  'is-valid': regusername.valid
+                    signupform.errors && (username.touched || username.dirty),
+                  'is-valid': username.valid
                 }" />
             </div>
-            <span class="feedback" *ngIf="regusername.invalid && regusername.touched">
+            <span class="feedback" *ngIf="username.invalid && username.touched">
               <!--*ngIf Directive-->
-              <strong *ngIf="regusername.errors?.required">Username is required</strong>
+              <strong *ngIf="username.errors">Username is required</strong>
 
             </span>
           </div>
-      
+
           <div class="form-group mt-3">
             <div class="input-group">
               <input type="email" formControlName="useremail" class="form-control" placeholder="email" [ngClass]="{
                   'is-invalid':
-                    signupform.errors && (userregemail.touched || userregemail.dirty),
+                    signupform.errors && (useremail.touched || useremail.dirty),
                   'is-valid': useremail.valid
                 }" />
             </div>
-            <span class="feedback" *ngIf="userregemail.invalid && userregemail.touched">
+            <span class="feedback" *ngIf="useremail.invalid && useremail.touched">
               <!--*ngIf Directive-->
-              <strong *ngIf="userregemail.errors?.required">
+              <strong *ngIf="useremail.errors">
                 Email is required</strong>
-              <strong *ngIf="userregemail.errors?.email">Not a valid email</strong>
+              <strong *ngIf="useremail.errors">Not a valid email</strong>
             </span>
           </div>
           <div class="form-group mt-3">
             <div class="input-group">
               <input type="password" class="form-control" placeholder="password" formControlName="password" />
             </div>
-            <span class="feedback" *ngIf="userpassword.invalid && userpassword.touched ">
+            <span class="feedback" *ngIf="password.invalid && password.touched ">
               <!--*ngIf Directive-->
-              <strong *ngIf="userpassword.errors?.pattern">
-                pattern doesn't match</strong>
-              <strong *ngIf="userpassword.errors?.required">
+              <strong *ngIf="password.errors">
                 Password is required</strong>
             </span>
           </div>
@@ -103,25 +101,22 @@
             </div>
             <span class="feedback" *ngIf="confirmpassword.invalid&& confirmpassword.touched">
               <!--*ngIf Directive-->
-              <strong *ngIf="confirmpassword.errors?.required">
-                confirmpassword is required</strong>
-
-              <strong *ngIf=confirmpassword.errors.matchPasswords>
+              <strong *ngIf="confirmpassword.errors">
                 password don't match </strong>
             </span>
           </div>
           <div class="form-group mt-3 text-center">
-            <input name="companytype" type="radio" formControlName="role" class="ms-2" value="admin" />
+            <input name="role" type="radio" formControlName="role" class="ms-2" value="admin" />
             <label class="ms-2" for="companytype">Admin</label>
-            <input name="companytype" type="radio" formControlName="role" class="ms-3" value="customer" />
+            <input name="role" type="radio" formControlName="role" class="ms-3" value="customer" />
             <label class="ms-2" for="companytype">Customer</label>
             <span class="feedback d-block" *ngIf="role.invalid">
               <!--*ngIf Directive-->
-              <strong *ngIf="role.errors?.required">
+              <strong *ngIf="role.errors">
                 Please select an option </strong>
             </span>
           </div>
-          
+
           <button class="form-control mt-5 btn" type="submit">Sign Up</button>
         </form>
       </div>

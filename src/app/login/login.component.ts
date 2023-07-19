@@ -15,13 +15,13 @@ export class LoginComponent implements OnInit {
     
   }
   signupform !: FormGroup;
-  regusername : FormControl | any;
-  userregemail : FormControl | any;
-  confirmpassword : FormControl | any;
-  userpassword : FormControl | any;
-  role : FormControl | any;
-  isLogged : FormControl | any;
- 
+  username !: FormControl;
+  useremail !: FormControl ;
+  confirmpassword !: FormControl;
+  password !: FormControl ;
+  role !: FormControl ;
+  isLogged !: FormControl ;
+
   
   userList : Users[]=[]
   static loggedUser:Users={
@@ -35,8 +35,8 @@ export class LoginComponent implements OnInit {
 
 
   loginForm !:FormGroup;
-  useremail !: FormControl;
-  password !: FormControl;  
+  loginuseremail !: FormControl;
+  loginpassword !: FormControl;  
   ngOnInit(): void {
     this.userObj.getUsers().subscribe(
       (res)=>{
@@ -44,14 +44,14 @@ export class LoginComponent implements OnInit {
       }
     )
     
-    this.useremail = new FormControl('', [Validators.required]);
-    this.password = new FormControl('',[Validators.required]);
+    this.loginuseremail = new FormControl('', [Validators.required]);
+    this.loginpassword = new FormControl('',[Validators.required]);
 
     this.loginForm= new FormGroup({
-      useremail : this.useremail,
-      password : this.password
+      loginuseremail : this.loginuseremail,
+      loginpassword : this.loginpassword
     });
-    this.regusername = new FormControl('', [Validators.required]);
+    this.username = new FormControl('', [Validators.required]);
     this.useremail = new FormControl('', [Validators.required, Validators.email,]);
     this.confirmpassword = new FormControl('', [Validators.required]);
     this.role = new FormControl('', [Validators.required]);
@@ -59,18 +59,19 @@ export class LoginComponent implements OnInit {
     this.password = new FormControl('', [Validators.required,  Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/)]);
     this.signupform = new FormGroup(
       {
-        firstname : this.regusername,
+        username : this.username,
         useremail: this.useremail,
         confirmpassword : this.confirmpassword,
-        companytype : this.role,
-        gstnumber : this.isLogged,
-        password :this.userpassword
+        role : this.role,
+        isLogged : this.isLogged,
+        password :this.password
       }
     )
 
   }
   public registerUser(userForm : FormGroup){
     userForm.value.isLogged=false;
+    console.log('hey')
     this.messages.add({ severity: 'success', summary: 'Registration', detail:'Registered Successfully' });
     this.userObj.postUsers(userForm.value);
   }
@@ -78,8 +79,9 @@ export class LoginComponent implements OnInit {
 
   public onSubmission(form:FormGroup){
    var userFound = false;
+   console.log(form.value);
     for (const user of this.userList) {
-      if(user.useremail=== form.value.useremail && user.password=== form.value.password)
+      if(user.useremail=== form.value.loginuseremail && user.password=== form.value.loginpassword)
       {
         this.messages.add({ severity: 'success', summary: 'Logged In', detail:'Login Successful' });
         user.isLogged=true;

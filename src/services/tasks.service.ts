@@ -22,4 +22,7 @@ export class TasksService {
   putTask(task:AssignedTask){
     this.http.put<AssignedTask[]>('http://localhost:3000/Task_List/'+task.id,task).subscribe();
   }
+  getUserTasks(id:number){
+    return this.http.get<AssignedTask[]>('http://localhost:3000/Task_List?username_like='+id);
+  }
 }

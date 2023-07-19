@@ -3,7 +3,7 @@
     {
       "id": 1,
       "username": "Jacob",
-      "isLogged": true,
+      "isLogged": false,
       "useremail": "jacobshaik@123.com",
       "role": "admin",
       "password": "admin@123"
@@ -77,7 +77,7 @@
       "enddate": "20/07/2023",
       "taskcode": "8643fwy282",
       "taskpriority": "low",
-      "task_completed": "true",
+      "task_completed": "false",
       "id": 1
     },
     {
